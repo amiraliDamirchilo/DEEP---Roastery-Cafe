@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DEEP Roastery &amp; Cafe | Al Ain</title>
+<meta name="description" content="DEEP Roastery & Cafe, Al Ain (ديب - محمصة وكافيه). Coffee roasted in-house. Visit the cafe or take beans home.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Readex+Pro:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+/* Concept: roast depth. The page itself roasts as you scroll, from green-bean pale to dark. Al Ain oasis light at the top, deep at the bottom. */
+:root{--paper:#F4EEDF;--ink:#1F1611;--mute:#7A6B5C;--palm:#46613F;--terra:#B5532E;--line:rgba(31,22,17,.14);
+--serif:'Fraunces',Georgia,serif;--sans:'Readex Pro',system-ui,sans-serif;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.6;overflow-x:hidden}
+a{color:inherit}p{max-width:56ch}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:.95;letter-spacing:-.03em;text-wrap:balance}
+.ar{font-family:var(--sans);direction:rtl;font-weight:500}
+.lbl{font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;font-family:var(--sans);font-weight:500;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .25s var(--ease)}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:18px;height:18px}
+.btn-k{background:var(--ink);color:var(--paper)}.btn-t{background:var(--terra);color:#fff}.btn-o{box-shadow:inset 0 0 0 1.5px currentColor}
+.nav{position:sticky;top:0;z-index:30;background:rgba(244,238,223,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:background .4s}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:13px}
+.logo{text-decoration:none;display:flex;align-items:baseline;gap:12px}
+.logo b{font-family:var(--serif);font-weight:900;font-size:26px;letter-spacing:.08em}
+.logo span{font-size:15px;color:var(--mute)}
+.menu{display:flex;gap:26px;font-size:15px}.menu a{text-decoration:none;color:var(--mute)}
+.nav .btn{padding:10px 18px;font-size:14px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:center;padding-block:clamp(40px,6vw,80px)}
+.hero-copy{min-width:0}
+.hero h1{font-size:clamp(60px,9vw,150px);font-weight:300;margin:18px 0 6px}
+.hero h1 b{font-weight:900;font-style:italic;color:var(--terra)}
+.hero .h1ar{font-size:clamp(22px,2.4vw,32px);color:var(--mute);margin-bottom:22px}
+.hero .lead{font-size:clamp(17px,1.5vw,20px);color:var(--mute);max-width:38ch;margin-bottom:28px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.stage{position:relative;aspect-ratio:1/1;min-width:0}
+#bean{position:absolute;inset:0;width:100%;height:100%;cursor:ew-resize;touch-action:pan-y}
+.roast{position:absolute;left:4%;right:4%;bottom:2%}
+.roast input{width:100%;accent-color:var(--terra)}
+.roast .row{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:6px}
+.roast .now{position:absolute;top:-44px;left:0;font-family:var(--serif);font-size:24px;font-style:italic}
+section{padding-block:clamp(80px,10vw,140px)}
+.hd{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,60px);align-items:end;margin-bottom:clamp(36px,5vw,60px)}
+.hd h2{font-size:clamp(44px,6vw,96px);font-weight:300}
+.hd h2 b{font-weight:900;font-style:italic}
+.hd p{color:inherit;opacity:.72}
+.hd .ar{opacity:.72;margin-top:10px}
+/* roast-depth bands */
+.b1{background:#E6D9BC}.b2{background:#B98A5B;color:#1F1611}.b3{background:#5B3A24;color:#F4EEDF}.b4{background:#1F1611;color:#F4EEDF}
+.depth{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:currentColor}
+.dp{padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:12px;min-height:320px;min-width:0;text-decoration:none}
+.dp:nth-child(1){background:#C9A26F;color:#1F1611}.dp:nth-child(2){background:#7C4F30;color:#F4EEDF}.dp:nth-child(3){background:#2E1D14;color:#F4EEDF}
+.dp h3{font-size:clamp(38px,4vw,58px);font-weight:300}
+.dp .notes{opacity:.8}
+.dp .go{margin-top:auto;font-weight:500}
+.cafe .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.cafe h2{font-size:clamp(44px,6vw,96px);font-weight:300;margin-bottom:20px}
+.cafe h2 b{font-weight:900;font-style:italic}
+.list a{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:20px 0;border-bottom:1px solid rgba(31,22,17,.22);text-decoration:none}
+.list h3{font-size:28px;font-weight:600}
+.list .ar{grid-column:2;grid-row:1;align-self:center;opacity:.7}
+.list p{grid-column:1/-1;opacity:.75;font-size:16px}
+.ritual{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.st{border-top:1px solid rgba(244,238,223,.3);padding-top:20px;min-width:0}
+.st b{font-family:var(--serif);font-size:56px;font-weight:300;font-style:italic;line-height:1;color:#D9A46E}
+.st h3{font-size:26px;margin:12px 0 6px;font-weight:600}.st p{opacity:.72;font-size:16px}
+.visit .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
+.visit h2{font-size:clamp(54px,8vw,130px);font-weight:300;margin-bottom:24px}
+.visit h2 b{font-weight:900;font-style:italic;color:#D9A46E}
+.r{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid rgba(244,238,223,.18)}
+.r span{color:#D9A46E;font-weight:500}
+form{border:1px solid rgba(244,238,223,.2);border-radius:20px;padding:clamp(22px,4vw,34px);display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:0}
+form h3{grid-column:1/-1;font-size:32px;font-weight:600}
+label{display:grid;gap:6px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+input,select{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;padding:13px;border-radius:12px;border:1px solid rgba(244,238,223,.25);background:rgba(255,255,255,.05);color:#F4EEDF;width:100%}
+select option{color:#111}
+input:focus,select:focus{outline:none;border-color:#D9A46E}
+form .btn{grid-column:1/-1;justify-content:center}
+footer{background:#120C09;color:#9C8B7A;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:24px}
+.dock{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;transform:translateY(160%);transition:transform .5s var(--ease)}
+.dock.show{transform:none}
+@media (max-width:980px){.menu{display:none}.hero .wrap,.hd,.cafe .wrap,.visit .wrap{grid-template-columns:1fr}.stage{max-width:440px;width:100%;margin:0 auto}.depth{grid-template-columns:1fr}.dp{min-height:0}.ritual{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.ritual,form{grid-template-columns:1fr}.r{grid-template-columns:1fr;gap:2px}.nav .btn span{display:none}.logo span{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.1 1.3 15.2 0 12 0 5.5 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.7c1.7.9 3.7 1.4 5.7 1.4 6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.2-3.5-8.4z"/></symbol></svg>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="#top"><b>DEEP</b><span class="ar">ديب</span></a>
+  <nav class="menu" aria-label="Main"><a href="#roasts">Roasts</a><a href="#cafe">Cafe</a><a href="#visit">Visit</a></nav>
+  <a class="btn btn-k wa" data-msg="Hi DEEP, I'd like to order." href="#"><svg><use href="#wa"/></svg><span>Order on WhatsApp</span></a>
+</div></header>
+
+<main id="top">
+<section class="hero" style="padding:0">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="lbl" style="color:var(--palm)">Roastery &amp; Cafe · Al Ain</span>
+      <h1>Roasted <b>deep</b> in Al Ain.</h1>
+      <p class="h1ar ar" style="text-align:left">محمصة وكافيه، من قلب العين.</p>
+      <p class="lead">We roast our own beans, here, in small batches. Taste the difference at the bar, or take a bag home still warm from the roaster.</p>
+      <div class="ctas">
+        <a class="btn btn-t wa" data-msg="Hi DEEP, which beans are freshly roasted this week?" href="#"><svg><use href="#wa"/></svg>What's freshly roasted?</a>
+        <a class="btn btn-o" href="#cafe">See the cafe menu</a>
+      </div>
+    </div>
+    <div class="stage">
+      <canvas id="bean" aria-label="A 3D coffee bean. Use the slider to roast it."></canvas>
+      <div class="roast"><span class="now" id="rn">Green</span><input id="rr" type="range" min="0" max="100" value="0" aria-label="Roast level"><div class="row"><span>Green</span><span>Light</span><span>Medium</span><span>Dark</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="b1" id="roasts">
+  <div class="wrap">
+    <div class="hd"><h2>Choose your <b>depth.</b></h2><div><p>Every bean tastes different depending on how deep we take the roast. Tap one and we'll tell you what's in stock.</p><p class="ar">اختار درجة التحميص اللي تحبها.</p></div></div>
+    <div class="depth">
+      <a class="dp wa" data-msg="Hi DEEP, I'd like light roast beans." href="#"><span class="lbl">Light</span><h3>Bright &amp; fruity</h3><p class="notes">Floral, citrus, tea-like. Best for V60 and filter.</p><span class="go">Ask what's in →</span></a>
+      <a class="dp wa" data-msg="Hi DEEP, I'd like medium roast beans." href="#"><span class="lbl">Medium</span><h3>Sweet &amp; balanced</h3><p class="notes">Caramel, nuts, chocolate. Works with everything.</p><span class="go">Ask what's in →</span></a>
+      <a class="dp wa" data-msg="Hi DEEP, I'd like dark roast beans." href="#"><span class="lbl">Dark</span><h3>Bold &amp; deep</h3><p class="notes">Cocoa, spice, full body. Made for espresso and milk.</p><span class="go">Ask what's in →</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="b2 cafe" id="cafe">
+  <div class="wrap">
+    <div><h2>Or just <b>sit down.</b></h2><p>The cafe pours what the roaster made this week. Order at the bar, or message ahead and pick up.</p></div>
+    <div class="list">
+      <a class="wa" data-msg="Hi DEEP, I'd like a Spanish latte." href="#"><h3>Spanish latte</h3><span class="ar">سبانش لاتيه</span><p>Espresso, milk, a little sweetness.</p></a>
+      <a class="wa" data-msg="Hi DEEP, I'd like a V60." href="#"><h3>V60</h3><span class="ar">في ٦٠</span><p>Hand-brewed, slow, clear. Ask for today's origin.</p></a>
+      <a class="wa" data-msg="Hi DEEP, I'd like a flat white." href="#"><h3>Flat white</h3><span class="ar">فلات وايت</span><p>Double shot, silky milk.</p></a>
+      <a class="wa" data-msg="Hi DEEP, I'd like an iced coffee." href="#"><h3>Iced coffee</h3><span class="ar">قهوة مثلجة</span><p>For Al Ain afternoons.</p></a>
+      <a class="wa" data-msg="Hi DEEP, I'd like Arabic coffee." href="#"><h3>Arabic coffee</h3><span class="ar">قهوة عربية</span><p>The way it should be served.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="b3">
+  <div class="wrap">
+    <div class="hd"><h2>From green to <b>cup.</b></h2><p>Why roasting it ourselves matters.</p></div>
+    <div class="ritual">
+      <div class="st"><b>i.</b><h3>Green beans</h3><p>Raw coffee arrives and is sorted by origin.</p></div>
+      <div class="st"><b>ii.</b><h3>Small batch roast</h3><p>Roasted here in small batches, watched the whole way.</p></div>
+      <div class="st"><b>iii.</b><h3>Rest</h3><p>Beans rest so the flavour can settle.</p></div>
+      <div class="st"><b>iv.</b><h3>Your cup</h3><p>Brewed fresh at the bar, or bagged for you to take home.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="b4 visit" id="visit">
+  <div class="wrap">
+    <div>
+      <h2>Come <b>deep.</b></h2>
+      <div class="r"><span>City</span><div>Al Ain</div></div>
+      <div class="r"><span>Cafe</span><div>Sit in, or order ahead</div></div>
+      <div class="r"><span>Beans</span><div>Whole or ground for your brewer</div></div>
+      <a class="btn btn-o" style="margin-top:24px" href="https://www.google.com/maps/search/?api=1&query=DEEP+Roastery+Cafe+Al+Ain" target="_blank" rel="noopener">Get directions</a>
+    </div>
+    <form id="bk">
+      <h3>Order beans</h3>
+      <label for="bR">Roast<select id="bR"><option>Light</option><option>Medium</option><option>Dark</option><option>Not sure, recommend</option></select></label>
+      <label for="bG">Grind<select id="bG"><option>Whole beans</option><option>Espresso</option><option>V60 / filter</option><option>French press</option></select></label>
+      <label for="bW">Amount<select id="bW"><option>250 g</option><option>500 g</option><option>1 kg</option></select></label>
+      <label for="bN">Name<input id="bN" type="text" autocomplete="name"></label>
+      <button class="btn btn-t" type="submit"><svg><use href="#wa"/></svg>Send on WhatsApp</button>
+    </form>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>© 2026 DEEP Roastery &amp; Cafe · Al Ain</span><span class="ar">ديب - محمصة وكافيه</span></div></footer>
+<div class="dock" id="dock"><a class="btn btn-t wa" data-msg="Hi DEEP, I'd like to order." href="#"><svg><use href="#wa"/></svg>Order</a></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var PHONE='971500000000'; // TODO: real WhatsApp number
+  function url(m){return 'https://wa.me/'+PHONE+'?text='+encodeURIComponent(m)}
+  document.querySelectorAll('.wa').forEach(function(a){a.href=url(a.dataset.msg);a.target='_blank';a.rel='noopener'});
+  var dock=document.getElementById('dock');addEventListener('scroll',function(){dock.classList.toggle('show',scrollY>innerHeight*.8)},{passive:true});
+  document.getElementById('bk').addEventListener('submit',function(e){e.preventDefault();var v=function(i){return document.getElementById(i).value||'-'};
+    window.open(url('Hi DEEP, I\'d like to order beans.\nRoast: '+v('bR')+'\nGrind: '+v('bG')+'\nAmount: '+v('bW')+'\nName: '+v('bN')),'_blank','noopener')});
+
+  var rr=document.getElementById('rr'),rn=document.getElementById('rn');
+  var STOPS=[[0,0x8FA36A,'Green'],[30,0xC9A26F,'Light'],[60,0x7C4F30,'Medium'],[100,0x2B1A12,'Dark']];
+  function roastColor(v){for(var i=1;i<STOPS.length;i++){if(v<=STOPS[i][0]){var a=STOPS[i-1],b=STOPS[i],t=(v-a[0])/(b[0]-a[0]);return {c:new THREE.Color(a[1]).lerp(new THREE.Color(b[1]),t),n:t<.5?a[2]:b[2]}}}return{c:new THREE.Color(STOPS[3][1]),n:'Dark'}}
+  if(!window.THREE){rr.addEventListener('input',function(){});return}
+  var canvas=document.getElementById('bean'),stage=canvas.parentElement;
+  try{
+    var R=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+    R.setPixelRatio(Math.min(devicePixelRatio,2));R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;
+    var S=new THREE.Scene(),C=new THREE.PerspectiveCamera(30,1,.1,100);C.position.set(0,0,10);
+    function col(h){return new THREE.Color(h).convertSRGBToLinear()}
+    var env=new THREE.Scene();env.add(new THREE.Mesh(new THREE.BoxGeometry(30,30,30),new THREE.MeshBasicMaterial({color:col(0xD8CBB0),side:THREE.BackSide})));
+    function panel(w,h,x,y,z,c,i){var m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:col(c).multiplyScalar(i),side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);env.add(m)}
+    panel(12,3,0,8,4,0xFFF6E3,2.6);panel(3,10,-9,0,4,0xffffff,1.4);panel(3,10,9,0,2,0xB5532E,1);
+    var pm=new THREE.PMREMGenerator(R);S.environment=pm.fromScene(env,.03).texture;
+    var kl=new THREE.DirectionalLight(col(0xFFF0D8),1.2);kl.position.set(3,5,6);S.add(kl);
+    // bean: deformed sphere with a crease
+    var g=new THREE.SphereGeometry(1.6,128,96),p=g.attributes.position,v=new THREE.Vector3();
+    for(var i=0;i<p.count;i++){v.fromBufferAttribute(p,i);
+      v.x*=1.35;v.z*=.82;
+      if(v.z>0){var crease=Math.exp(-Math.pow(v.y/.16,2))*(.55*(1-Math.abs(v.x)/2.2));v.z-=crease*Math.min(1,v.z*1.2)}
+      var s=Math.sin(v.x*1.4)*.06;v.y+=s*(v.z>0?1:.3);
+      p.setXYZ(i,v.x,v.y,v.z)}
+    g.computeVertexNormals();
+    var mat=new THREE.MeshPhysicalMaterial({color:col(0x8FA36A),roughness:.75,clearcoat:0,clearcoatRoughness:.2});
+    var bean=new THREE.Mesh(g,mat);var B=new THREE.Group();B.add(bean);S.add(B);
+    bean.rotation.z=.5;
+    // smoke
+    var sm=[];for(i=0;i<14;i++){var s2=new THREE.Mesh(new THREE.SphereGeometry(.3,12,8),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,depthWrite:false}));s2.userData.o=Math.random();S.add(s2);sm.push(s2)}
+    function size(){var w=canvas.clientWidth,h=canvas.clientHeight;if(!w)return;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}
+    size();addEventListener('resize',size);
+    var level=0,target=0,auto=true,crack=0,lastName='Green';
+    rr.addEventListener('input',function(){auto=false;target=+rr.value});
+    var drag=false,lx=0;
+    canvas.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;auto=false;canvas.setPointerCapture(e.pointerId)});
+    canvas.addEventListener('pointermove',function(e){if(drag){target=Math.max(0,Math.min(100,target+(e.clientX-lx)*.3));lx=e.clientX;rr.value=target}});
+    canvas.addEventListener('pointerup',function(){drag=false});
+    var visible=true,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,t0=performance.now();
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(stage);
+    (function loop(t){requestAnimationFrame(loop);if(!visible)return;var tt=(t-t0)/1000;
+      if(auto&&!reduce){target=Math.min(60,tt*12);rr.value=target}
+      level+=(target-level)*.08;
+      var rc=roastColor(level);mat.color.copy(rc.c).convertSRGBToLinear();
+      mat.roughness=.75-level/100*.5;mat.clearcoat=Math.max(0,(level-55)/45)*.9; // oils surface on dark roast
+      if(rc.n!==lastName){lastName=rc.n;rn.textContent=rc.n;crack=1}
+      crack*=.9;var sc=1+level/100*.12+crack*.05*Math.sin(tt*60);B.scale.setScalar(sc); // beans swell as they roast
+      sm.forEach(function(s,i){var q=(tt*.3+s.userData.o)%1;s.position.set(Math.sin(i*2.3)*.8*q,1.6+q*2.6,Math.cos(i)*.4);s.scale.setScalar(.5+q*1.6);s.material.opacity=(level/100)*(1-q)*.3});
+      B.rotation.y=reduce?0:tt*.35;B.rotation.x=reduce?0:Math.sin(tt*.5)*.25;
+      R.render(S,C)})(t0);
+  }catch(err){console.warn(err)}
+})();
+</script>
+</body>
+</html>
